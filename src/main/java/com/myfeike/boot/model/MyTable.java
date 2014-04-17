@@ -1,12 +1,13 @@
 package com.myfeike.boot.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by izerui.com on 14-4-16.
  */
 @Entity(name = "MYTABLE")
-public class MyTable {
+public class MyTable implements Serializable{
 
     @Id
     @Column(name = "ID",length = 50,nullable = false)

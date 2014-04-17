@@ -8,6 +8,8 @@ import com.myfeike.boot.repository.SysOrgElementRepository;
 import com.myfeike.boot.repository.SysOrgPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.io.*;
 import java.util.*;
@@ -15,7 +17,7 @@ import java.util.*;
 /**
  * Created by izerui.com on 14-4-16.
  */
-@Component
+@Service
 public class MyService {
     @Autowired
     MytableRepository mytableRepository;
@@ -58,15 +60,18 @@ public class MyService {
     }
 
 
-    public <T extends Serializable> List<T> deserializeList(String filename){
-        try{
-            InputStream file = new FileInputStream(filename);
-            InputStream buffer = new BufferedInputStream(file);
-            ObjectInput input = new ObjectInputStream (buffer);
-            //deserialize the List
-            return (List<T>)input.readObject();
-        }catch (Exception e){
+    public <T> List<T> deserializeList(String filename){
 
+        try {
+            InputStream fileInputStream = new FileInputStream(filename);
+            ObjectInput input = new ObjectInputStream(fileInputStream);
+            return (List<T>) input.readObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return null;
     }
@@ -74,14 +79,17 @@ public class MyService {
 
     public void writeSerialize(Object obj,String filename) {
 
-        try{
-            OutputStream file = new FileOutputStream(filename);
-            OutputStream buffer = new BufferedOutputStream(file);
-            ObjectOutput output = new ObjectOutputStream(buffer);
-            output.writeObject(obj);
-        }catch (Exception e){
-
+        OutputStream fileOutPutStream = null;
+        try {
+            fileOutPutStream = new FileOutputStream(filename);
+            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutPutStream);
+            outputStream.writeObject(obj);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
+
 }

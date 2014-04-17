@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.*;
 import java.util.List;
 
 /**
@@ -69,7 +68,6 @@ public class MyController {
     public List<SysOrgElement> elements(){
         return   myService.deserializeList("c:/element.ser");
     }
-
 
 
 
