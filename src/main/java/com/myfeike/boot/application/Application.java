@@ -6,10 +6,8 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import javax.annotation.sql.DataSourceDefinition;
 import java.util.Arrays;
 
 /**
@@ -19,8 +17,8 @@ import java.util.Arrays;
 @ComponentScan("com.myfeike")
 @EnableAutoConfiguration
 @EntityScan("com.myfeike.boot.model")
+
 @EnableJpaRepositories("com.myfeike.boot.repository")
-//@DataSourceDefinition(name = "dataSource",url = "jdbc:mysql://localhost/edp3",className = "com.mysql.jdbc.Driver",user = "root",password = "root")
 public class Application {
 
     public static void main(String[] args) {
