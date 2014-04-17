@@ -58,6 +58,11 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4</version>
+        </dependency>
 
     </dependencies>
 
@@ -79,6 +84,10 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>kafeitu</id>
+            <url>http://maven.kafeitu.me/nexus/content/groups/public</url>
         </repository>
     </repositories>
 </project>
