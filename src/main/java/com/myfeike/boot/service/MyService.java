@@ -60,7 +60,7 @@ public class MyService {
 
     public <T extends Serializable> List<T> deserializeList(String filename){
         try{
-            InputStream file = new FileInputStream("quarks.ser");
+            InputStream file = new FileInputStream(filename);
             InputStream buffer = new BufferedInputStream(file);
             ObjectInput input = new ObjectInputStream (buffer);
             //deserialize the List
