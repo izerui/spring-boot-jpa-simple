@@ -24,6 +24,7 @@ public class MyController {
     @ResponseBody
     @RequestMapping("/test")
     public List<MyTable> test(){
+        myService.initData();
         return myService.list();
     }
 
