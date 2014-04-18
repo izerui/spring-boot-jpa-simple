@@ -97,7 +97,7 @@
 
 
     <repositories>
-        <!--
+
        <repository>
            <id>spring-snapshots</id>
            <name>Spring Snapshots</name>
@@ -118,11 +118,12 @@
            <id>kafeitu</id>
            <url>http://maven.kafeitu.me/nexus/content/groups/public</url>
        </repository>
-       -->
+        <!--
         <repository>
             <id>public</id>
             <url>http://localhost:8081/nexus/content/groups/public/</url>
         </repository>
+        -->
     </repositories>
 
 
