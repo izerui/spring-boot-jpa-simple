@@ -2,7 +2,7 @@ package com.myfeike.boot.controller;
 
 import com.myfeike.boot.ObjectMapperFactory;
 import com.myfeike.boot.model.*;
-import com.myfeike.boot.service.MyService;
+import com.myfeike.boot.service.DataService;
 import com.myfeike.boot.service.SynUnitAndPersonService;
 import ma.glasnost.orika.MapperFacade;
 import org.apache.commons.collections.Predicate;
@@ -25,43 +25,36 @@ public class MyController {
     final String personFile = "c:/person.ser";
 
     @Autowired
-    MyService myService;
+    DataService dataService;
     @Autowired
     SynUnitAndPersonService synUnitAndPersonService;
 
     @ResponseBody
-    @RequestMapping("/test")
-    public List<MyTable> test(){
-        myService.initData();
-        return myService.listTest();
-    }
-
-    @ResponseBody
     @RequestMapping("/element")
     public List<SysOrgElement> listElement(){
-        return myService.listElement();
+        return dataService.listElement();
     }
 
     @ResponseBody
     @RequestMapping("/person")
     public List<SysOrgPerson> listPerson(){
-        return myService.listPerson();
+        return dataService.listPerson();
     }
 
     @RequestMapping("/element/save")
     public String listElementSave(){
-        List<SysOrgElement> sysOrgElements = myService.listElement();
+        List<SysOrgElement> sysOrgElements = dataService.listElement();
 
-        myService.writeSerialize(sysOrgElements,elementsFile);
+        dataService.writeSerialize(sysOrgElements,elementsFile);
 
         return "success";
     }
 
     @RequestMapping("/person/save")
     public String listPersonSave(){
-        List<SysOrgPerson> sysOrgPersons = myService.listPerson();
+        List<SysOrgPerson> sysOrgPersons = dataService.listPerson();
 
-        myService.writeSerialize(sysOrgPersons,personFile);
+        dataService.writeSerialize(sysOrgPersons,personFile);
 
 
         return "success";
@@ -70,32 +63,21 @@ public class MyController {
     @RequestMapping("/person/list")
     @ResponseBody
     public Integer persons(){
-        List<SysOrgPerson> persons = myService.deserializeList(personFile);
+        List<SysOrgPerson> persons = dataService.deserializeList(personFile);
         return persons.size();
     }
     @RequestMapping("/element/list")
     @ResponseBody
     public Integer elements(){
-       List<SysOrgElement> elements =myService.deserializeList(elementsFile);
+       List<SysOrgElement> elements =dataService.deserializeList(elementsFile);
        return elements.size();
     }
 
 
-//    @RequestMapping("user/list")
-//    @ResponseBody
-//    public List<User> listUser(){
-//        return synUnitAndPersonService.listUser();
-//    }
-//    @RequestMapping("dept/list")
-//    @ResponseBody
-//    public List<Dept> listDept(){
-//        return synUnitAndPersonService.listDept();
-//    }
-
     @RequestMapping("syn")
     public String syn(){
-        List<SysOrgElement> elements = myService.deserializeList(elementsFile);
-        List<SysOrgPerson> persons = myService.deserializeList(personFile);
+        List<SysOrgElement> elements = dataService.deserializeList(elementsFile);
+        List<SysOrgPerson> persons = dataService.deserializeList(personFile);
 
         Set<Dept> depts = new HashSet<Dept>();
         Set<User> users = new HashSet<User>();

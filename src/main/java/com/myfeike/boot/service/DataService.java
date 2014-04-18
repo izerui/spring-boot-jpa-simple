@@ -1,27 +1,20 @@
 package com.myfeike.boot.service;
 
-import com.myfeike.boot.model.MyTable;
 import com.myfeike.boot.model.SysOrgElement;
 import com.myfeike.boot.model.SysOrgPerson;
-import com.myfeike.boot.repository.MytableRepository;
 import com.myfeike.boot.repository.SysOrgElementRepository;
 import com.myfeike.boot.repository.SysOrgPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 /**
  * Created by izerui.com on 14-4-16.
  */
 @Service
-public class MyService {
-    @Autowired
-    MytableRepository mytableRepository;
+public class DataService {
 
     @Autowired
     SysOrgElementRepository sysOrgElementRepository;
@@ -29,9 +22,6 @@ public class MyService {
     @Autowired
     SysOrgPersonRepository sysOrgPersonRepository;
 
-    public List<MyTable> listTest(){
-       return mytableRepository.findAll();
-    }
 
     public List<SysOrgElement> listElement(){
         return sysOrgElementRepository.findAll();
@@ -39,25 +29,6 @@ public class MyService {
 
     public List<SysOrgPerson> listPerson(){
         return sysOrgPersonRepository.findAll();
-    }
-
-    public void initData() {
-        MyTable m1 = initTestData();
-        MyTable m2 = initTestData();
-        MyTable m3 = initTestData();
-        Set<MyTable> sets = new HashSet<MyTable>();
-        sets.add(m1);
-        sets.add(m2);
-        sets.add(m3);
-        mytableRepository.save(sets);
-    }
-
-    private MyTable initTestData(){
-        MyTable m1 = new MyTable();
-        m1.setId(UUID.randomUUID().toString());
-        m1.setDeleted(false);
-        m1.setName(UUID.randomUUID().toString());
-        return m1;
     }
 
 
