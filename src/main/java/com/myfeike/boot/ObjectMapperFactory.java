@@ -38,6 +38,7 @@ public class ObjectMapperFactory{
                 .field("fdShortSpell", "shortSpell")
                 .field("fdHierarchyId", "orgId")
                 .field("fdParentid", "qq")
+                .field("fdParentid", "defaultDeptId")
                 .byDefault()
                 .register();
 
