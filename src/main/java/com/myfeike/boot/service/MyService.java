@@ -7,12 +7,13 @@ import com.myfeike.boot.repository.MytableRepository;
 import com.myfeike.boot.repository.SysOrgElementRepository;
 import com.myfeike.boot.repository.SysOrgPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import java.io.*;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * Created by izerui.com on 14-4-16.
@@ -60,12 +61,14 @@ public class MyService {
     }
 
 
-    public <T> List<T> deserializeList(String filename){
-
+    public <T>  List<T> deserializeList(String filename){
+        List<T> result = null;
         try {
             InputStream fileInputStream = new FileInputStream(filename);
             ObjectInput input = new ObjectInputStream(fileInputStream);
-            return (List<T>) input.readObject();
+            result = (List<T>) input.readObject();
+            fileInputStream.close();
+            input.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -73,17 +76,18 @@ public class MyService {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
 
 
     public void writeSerialize(Object obj,String filename) {
 
-        OutputStream fileOutPutStream = null;
         try {
-            fileOutPutStream = new FileOutputStream(filename);
+            OutputStream fileOutPutStream = new FileOutputStream(filename);
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutPutStream);
             outputStream.writeObject(obj);
+            fileOutPutStream.close();
+            outputStream.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

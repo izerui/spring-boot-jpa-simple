@@ -17,7 +17,6 @@ import java.util.Arrays;
 @ComponentScan("com.myfeike")
 @EnableAutoConfiguration
 @EntityScan("com.myfeike.boot.model")
-
 @EnableJpaRepositories("com.myfeike.boot.repository")
 public class Application {
 

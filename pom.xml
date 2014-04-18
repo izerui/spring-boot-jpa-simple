@@ -41,6 +41,23 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.4.4</version>
+        </dependency>
 
 
 
@@ -69,7 +86,6 @@
 
 
     <repositories>
-        <!--
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
@@ -89,11 +105,6 @@
         <repository>
             <id>kafeitu</id>
             <url>http://maven.kafeitu.me/nexus/content/groups/public</url>
-        </repository>
-        -->
-        <repository>
-            <id>public</id>
-            <url>http://localhost:8081/nexus/content/groups/public/</url>
         </repository>
     </repositories>
 </project>
